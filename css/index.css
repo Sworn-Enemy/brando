@@ -1317,6 +1317,7 @@ body {
   padding: 30px 50px;
   border: solid 5px #898a8e;
   border-radius: 0px 20px 0 0;
+  pointer-events: none;
 }
 
 @-webkit-keyframes color_title {
