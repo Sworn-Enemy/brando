@@ -1,9 +1,6 @@
 "use strict"
-
 const start = () => {
   let isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints;
-  ///// SWIPER /////
-
   let mainHeaderSlider = new Swiper(".main-header__slider", {
     effect: "creative",
     creativeEffect: {
@@ -24,7 +21,6 @@ const start = () => {
       clickable: true,
     },
   });
-
   let mainBottomSlider = new Swiper(".bottom-slider__slider", {
     spaceBetween: 30,
     autoplay: {
@@ -47,7 +43,6 @@ const start = () => {
       },
     },
   });
-
   let sponsorSlider = new Swiper(".sponsor-slider", {
     slidesPerView: 6,
     spaceBetween: 10,
@@ -63,12 +58,10 @@ const start = () => {
       clickable: true,
     },
     breakpoints: {
-      // when window width is >= 320px
       320: {
         slidesPerView: 1,
         spaceBetween: 5
       },
-      // when window width is >= 480px
       480: {
         slidesPerView: 3,
         spaceBetween: 5
@@ -81,14 +74,12 @@ const start = () => {
         slidesPerView: 5,
         spaceBetween: 10
       },
-      // when window width is >= 640px
       1660: {
         slidesPerView: 6,
         spaceBetween: 10
       }
     }
   });
-
   let productSliderInside = new Swiper(".product__slider", {
     effect: "creative",
     loop: true,
@@ -111,9 +102,7 @@ const start = () => {
       el: ".product__pagination",
     },
   });
-
   let ViewedSlider = new Swiper(".viewed__slider", {
-
     slidesPerView: '4',
     spaceBetween: 10,
     loop: true,
@@ -123,9 +112,7 @@ const start = () => {
       prevEl: ".viewed__slider-prev",
     },
     keyboard: true,
-
     breakpoints: {
-      // when window width is >= 320px
       220: {
         slidesPerView: 1.1,
         spaceBetween: 10
@@ -134,7 +121,6 @@ const start = () => {
         slidesPerView: 2.1,
         spaceBetween: 10
       },
-      // when window width is >= 480px
       768: {
         slidesPerView: 3,
         spaceBetween: 10
@@ -159,7 +145,6 @@ const start = () => {
       prevEl: ".desc-product__slider-prev",
     },
     breakpoints: {
-      // when window width is >= 320px
       220: {
         slidesPerView: 1.1,
         spaceBetween: 10
@@ -168,7 +153,6 @@ const start = () => {
         slidesPerView: 2.1,
         spaceBetween: 10
       },
-      // when window width is >= 480px
       768: {
         slidesPerView: 3,
         spaceBetween: 10,
@@ -183,8 +167,6 @@ const start = () => {
       }
     }
   });
-
-  ////// CHOICES ////
   const sortingSelect = document.querySelector('.sorting__select[name="select-price"]');
   if (sortingSelect) {
     const choices = new Choices(sortingSelect, {
@@ -199,8 +181,6 @@ const start = () => {
       searchEnabled: false,
     });
   }
-
-  ///// FOOTER SPOLER //////
   let footerList = document.querySelectorAll('.footer__list');
   const footerListSpoler = (event) => {
     let target = event.target.classList;
@@ -211,16 +191,12 @@ const start = () => {
       event.target.parentNode.parentNode.classList.toggle('footer__list--open')
     }
   }
-
   footerList.forEach(item => {
     item.addEventListener('click', footerListSpoler);
   })
-
-  ///// TABS /////
   let btnMenuTabs = document.querySelectorAll('.menu-tabs__btn');
   let contentMenuTabs = document.querySelectorAll('.menu-tabs__content');
   let menuTabsButtons = document.querySelector('.menu-tabs__buttons');
-
   if (btnMenuTabs.length > 0) {
     btnMenuTabs.forEach((item, index) => {
       item.addEventListener('click', event => {
@@ -239,8 +215,6 @@ const start = () => {
       })
     })
   }
-
-  ///// body no scroll /////
   const NoScroll = (add) => {
     if (add) {
       document.body.classList.add('no-scroll');
@@ -248,12 +222,9 @@ const start = () => {
       document.body.classList.remove('no-scroll');
     }
   }
-
-  ///// menu burger /////
   let menuBurger = document.querySelector('.main-header__menu-burger, .header__menu-burger');
   let mainMenu = document.querySelector('.main-menu');
   let mainMenuCross = document.querySelector('.main-menu__cross');
-
   if (menuBurger != null && mainMenu != null && mainMenuCross != null) {
     menuBurger.addEventListener('click', () => {
       mainMenu.classList.add('main-menu--show');
@@ -264,48 +235,37 @@ const start = () => {
       NoScroll(false)
     })
   }
-
-  ///// drop menu authorized /////
   let authorizedClass = document.querySelector('.btn-group__link--authorized');
   let DropMenuClass = document.querySelector('.header-drop-menu');
-
   const showDropMenu = (event) => {
     event.preventDefault();
     DropMenuClass.classList.toggle('header-drop-menu--active');
   }
-
   const windowClickFunction = (event) => {
     const target = event.target;
     const headerDropMenu = '.header-drop-menu';
     const authorized = '.btn-group__link--authorized';
-
     if ((!target.closest(authorized)) && (!target.closest(headerDropMenu))) {
       DropMenuClass.classList.remove('header-drop-menu--active');
     } else {
       return;
     }
   }
-
   if (authorizedClass !== null) {
     authorizedClass.addEventListener('click', showDropMenu);
     window.addEventListener('click', windowClickFunction)
   }
-
-  ////// POPUP SYSTEM /////
   let buttonBack = document.querySelectorAll('.menu-popup__back');
   let menuTabsLink = document.querySelectorAll('.menu-tabs__link');
   let menuPopUpLink = document.querySelectorAll('.menu-popup__link');
-
   const PopUpButtonBack = (event) => {
     event.preventDefault();
     if (event.target.parentNode.parentNode.classList.contains('menu-popup--show')) {
       event.target.parentNode.parentNode.classList.remove('menu-popup--show');
     }
   }
-
   const ShowPopUp = (event) => {
     event.preventDefault();
-
     let attr = event.target.getAttribute('data-menu-popup');
     if (attr) {
       let popUp = document.querySelector(`.menu-popup[data-menu-popup="${attr}"]`);
@@ -314,7 +274,6 @@ const start = () => {
       }
     }
   }
-
   buttonBack.forEach(item => {
     item.addEventListener('click', PopUpButtonBack);
   });
@@ -324,11 +283,7 @@ const start = () => {
   menuPopUpLink.forEach(item => {
     item.addEventListener('click', ShowPopUp);
   });
-
-  ////// FAVORITES/////
-
   let favBtn = document.querySelectorAll('.product__favorite, .product-card__favorite');
-
   const FavoritesAdd = (event) => {
     if (event.target.classList.contains('product__favorite')) {
       let activeClass = 'product__favorite--add';
@@ -340,22 +295,15 @@ const start = () => {
       event.target.classList.toggle(activeClass);
       return
     }
-
   }
-
   if (favBtn.length > 0) {
     favBtn.forEach(item => {
       item.addEventListener('click', FavoritesAdd);
     })
   }
-
-  ////// PRODUCT UP ANIMATE/////
-
   let product = document.querySelectorAll('.product__inner');
   let productBottom = document.querySelectorAll('.product__bottom');
-
   if (!isTouch && product.length > 0) {
-
     const ProductEnter = (event) => {
       let product = event.target;
       let productHeight = product.clientHeight;
@@ -366,7 +314,6 @@ const start = () => {
       productSlider.style.transform = `translateY(-${productTransformOffset}px)`;
       productBottom.style.transform = `translateY(-${productTransformOffset}px)`;
     }
-
     const ProductLeave = (event) => {
       let product = event.target;
       let productSlider = product.querySelector('.product__slider, .product__link');
@@ -374,22 +321,17 @@ const start = () => {
       productSlider.style.transform = `translateY(0px)`;
       productBottom.style.transform = `translateY(0px)`;
     }
-
     product.forEach(item => {
       item.addEventListener('mouseenter', ProductEnter);
       item.addEventListener('mouseleave', ProductLeave);
     });
   }
-  ////// CUSTOM MULTI SELECT /////
-
   let customSelectBtn = document.querySelectorAll('.custom-select__btn');
   let filtersBottom = document.querySelector('.filtres__bottom');
   let checkboxes = document.querySelectorAll('.custom-checkbox__default');
   let tags = [];
   let filterTemp;
-
   const Uncover = (event) => {
-
     if (event.target.classList.contains('custom-select__btn')) {
       let customSelectBtnUncover = document.querySelectorAll('.custom-select__btn--uncover');
       if (customSelectBtnUncover.length > 0) {
@@ -400,17 +342,14 @@ const start = () => {
           }
         })
       }
-
       let customSelectList = event.target.querySelector('.custom-select__list');
       event.target.classList.toggle('custom-select__btn--uncover');
       customSelectList.classList.toggle('custom-select__list--show');
     }
-
     if (event.target.classList.contains('custom-checkbox__default')) {
       CountCheck();
     }
   }
-
   const UncoverForWindow = (event) => {
     let target = event.target;
     if (!target.closest('.custom-select__btn') && !target.closest('.custom-select__list')) {
@@ -420,7 +359,6 @@ const start = () => {
       })
     }
   }
-
   const CountCheck = () => {
     customSelectBtn.forEach(item => {
       let checkBoxs = item.querySelectorAll('.custom-checkbox__default:checked');
@@ -428,7 +366,6 @@ const start = () => {
       numSpan.innerHTML = `${checkBoxs.length}`;
     })
   }
-
   const AddCheckboxTags = (event) => {
     let checkbox = event.target
     let index = tags.indexOf(checkbox.getAttribute('name'));
@@ -456,22 +393,18 @@ const start = () => {
     }
     filtersBottom.innerHTML = filterTemp;
   }
-
   if (customSelectBtn.length > 0) {
     customSelectBtn.forEach(item => {
       item.addEventListener('click', Uncover);
     });
-
     window.addEventListener('click', UncoverForWindow);
     CountCheck();
   }
-
   if (checkboxes.length > 0) {
     checkboxes.forEach(checkbox => {
       checkbox.addEventListener('change', AddCheckboxTags)
     })
   };
-
   if (filtersBottom) {
     filtersBottom.addEventListener('click', (event) => {
       if (event.target.closest('.filtres__item')) {
@@ -487,10 +420,6 @@ const start = () => {
       }
     });
   }
-
-
-  // CATALOG PRICE FIXED 1100px//
-
   if (productBottom.length > 0) {
     productBottom.forEach(productBottom => {
 
@@ -506,24 +435,18 @@ const start = () => {
           productTitleGroup.appendChild(productPrice);
           productSubtitleGroup.prepend(productSubtitle);
         }
-
       }
       window.addEventListener('resize', ProductFixResize);
       ProductFixResize();
     })
   }
-
-  /// ADAPTIVE PRODUCT
   let productInner = document.querySelectorAll('.product__inner');
   const ProductResizeAdaptive = () => {
-
     if (productInner.length > 0) {
       productInner.forEach(inner => {
-
         let productSize = inner.querySelector('.sizes').scrollHeight;
         let innerHeight = inner.scrollHeight - productSize - 50;
         inner.style.maxHeight = `${innerHeight}px`;
-
       })
     }
   }
@@ -532,13 +455,8 @@ const start = () => {
     ProductResizeAdaptive();
   }, 1000);
   window.addEventListener('resize', ProductResizeAdaptive);
-
-
-  ////// MOBILE PRICE UP AND DOWN ////
-
   let mobilePriceBtn = document.querySelector('.mobile-filters__btn--price-up[data-sort="price-up"]');
   let filters = document.querySelector('.filters');
-
   if (mobilePriceBtn) {
     mobilePriceBtn.addEventListener('click', () => {
       if (mobilePriceBtn.classList.contains('mobile-filters__btn--price-up')) {
@@ -550,34 +468,24 @@ const start = () => {
       }
     })
   }
-
-  ////// MOBILE SHOW FILTER BUTTON ////
-
   let mobiFiltres = document.querySelector('.mobile-filters__btn[data-filter="popup"]');
   let mobiFiltersClose = document.querySelector('.filters__close');
-
   if (mobiFiltres) {
     mobiFiltres.addEventListener('click', () => {
       filters.classList.add('filters--show');
       NoScroll(true);
     })
   }
-
   if (mobiFiltersClose) {
     mobiFiltersClose.addEventListener('click', () => {
       filters.classList.remove('filters--show');
       NoScroll(false);
     })
   }
-
-  /////// popup-photogallery ////////
-
   let productZoomImg = document.querySelector('.product-card__images-zoom');
   let popupPhotoGallery = document.querySelector('.popup-photogallery');
   let popupPhotoGalleryCross = document.querySelector('.popup-photogallery__cross');
-
   if (popupPhotoGallery !== null) {
-
     productZoomImg.addEventListener('click', () => {
       popupPhotoGallery.classList.add('popup-photogallery--show');
       NoScroll(true);
@@ -586,26 +494,19 @@ const start = () => {
       popupPhotoGallery.classList.remove('popup-photogallery--show');
       NoScroll(false);
     })
-
     let swiperWrapper = popupPhotoGallery.querySelector('.swiper-wrapper');
     let productCardImagesSlider = document.querySelectorAll('.product-card__slider-img');
-
-
     productCardImagesSlider.forEach((item, index) => {
       swiperWrapper.innerHTML += `
       <div class="swiper-slide">
         <img class="popup-photogallery__slider-img" src="${item.getAttribute('src')}" alt="Продукт">
       </div>`
     })
-
-
   }
-
   let popupPhotogallery = new Swiper(".popup-photogallery__slider", {
     loop: true,
     spaceBetween: 30
   });
-
   const swiperThumbneil = new Swiper(".slider-thumbnail", {
     loop: true,
     direction: "vertical",
@@ -614,7 +515,6 @@ const start = () => {
     watchSlidesProgress: true,
     centeredSlides: false,
   });
-
   const swiperProductCard = new Swiper(".product-card__images", {
     loop: true,
     spaceBetween: 10,
@@ -632,32 +532,21 @@ const start = () => {
       prevEl: ".product-card__slider-next",
     },
   });
-
-  /// ACORD ITEM IN PRODUCT 
-
   let acord = document.querySelectorAll('.acord__item');
-
   const AcordFunction = (event) => {
     acord.forEach(item => {
       if (item.classList.contains('acord__item--open') && !event.target.closest('.acord__item--open')) {
         item.classList.remove('acord__item--open');
       }
     })
-
     event.target.classList.toggle('acord__item--open');
-
   }
-
   if (acord.length > 0) {
     acord.forEach(item => {
       item.addEventListener('click', AcordFunction)
     })
   }
-
-  /// DIALOG WINDOWS ///
-
   let dialog = document.querySelectorAll('.dialog');
-
   const DialogClosed = (event) => {
     if (!event.target.closest('.dialog__inner')) {
       event.target.closest('.dialog').classList.remove('dialog--show');
@@ -669,18 +558,13 @@ const start = () => {
       return;
     }
   }
-
-
   if (dialog.length > 0) {
     dialog.forEach(item => {
       item.addEventListener('click', DialogClosed);
     })
   }
-
-
   let sizesBtn = document.querySelector('.sizes__check');
   let commentBtn = document.querySelector('.comment__button');
-
   if (sizesBtn !== null) {
     let sizesDialog = document.querySelector('.dialog[data-dialog="sizes"]');
     sizesBtn.addEventListener('click', () => {
@@ -688,7 +572,6 @@ const start = () => {
       NoScroll(true);
     })
   }
-
   if (commentBtn !== null) {
     let commentDialog = document.querySelector('.dialog[data-dialog="comment"]');
     commentBtn.addEventListener('click', () => {
@@ -696,22 +579,15 @@ const start = () => {
       NoScroll(true);
     })
   }
-
-  /////// RATING PRODUCT /////////
-
   let ratingStar = document.querySelectorAll('.dialog-comment__rating-star');
-
   if (ratingStar.length > 0) {
-
     ratingStar.forEach(i => {
       i.addEventListener('click', (e) => {
-
         ratingStar.forEach(star => {
           if (star.classList.contains('dialog-comment__rating-star--full')) {
             star.classList.remove('dialog-comment__rating-star--full');
           }
         })
-
         if (!e.target.classList.contains('dialog-comment__rating-star--full')) {
           e.target.classList.add('dialog-comment__rating-star--full');
           console.log('Вы поставили: ' + e.target.getAttribute('data-star') + ' Звезд');
@@ -720,14 +596,6 @@ const start = () => {
         }
       })
     })
-
-
   }
-
 }
-
 window.addEventListener('DOMContentLoaded', start);
-
-
-// item.addEventListener('mouseenter', ProductEnter);
-// item.addEventListener('mouseleave', ProductLeave);
