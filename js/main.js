@@ -597,5 +597,13 @@ const start = () => {
       })
     })
   }
+
+  //// preloader /////
+
+  let preloader = document.querySelector('.preloader');
+
+  if (preloader !== null) {
+    preloader.remove();
+  }
 }
 window.addEventListener('DOMContentLoaded', start);

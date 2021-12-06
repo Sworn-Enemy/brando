@@ -3257,6 +3257,8 @@ body {
 .popup-photogallery__slider-img {
   height: 100%;
   margin: 0 auto;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .product-color__title {
@@ -4296,7 +4298,8 @@ body {
   }
 
   .comment__button {
-    display: none;
+    right: 25px;
+    top: 5px;
   }
 }
 
@@ -4987,6 +4990,12 @@ body {
     right: 0;
     transform: translateY(-50%);
     margin: 0;
+  }
+
+  .comment__button {
+    padding: 10px 10px 10px 10px;
+    max-width: 160px;
+    right: 17px;
   }
 }
 
